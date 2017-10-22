@@ -1,2 +1,4 @@
 .Dockerfile.swp
 apache2
+.build_image.sh.swp
+apache2_conf
