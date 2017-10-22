@@ -13,4 +13,6 @@ EXPOSE 80
 # share volumes
 ADD html /var/www/html
 ADD apache2_conf /etc/apache2
+# start service
+# the 'tail' command avoid container to stop (so simulate a daemon)
 CMD exec /bin/bash -c "service apache2 start ; tail -f /dev/null"
