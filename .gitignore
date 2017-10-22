@@ -2,3 +2,6 @@
 apache2
 .build_image.sh.swp
 apache2_conf
+apache2_log
+backup
+html
