@@ -14,7 +14,4 @@ EXPOSE 80
 # Demarrage des services
 RUN mkdir -p /var/log/supervisor
 #ADD apache.conf /etc/supervisor/conf.d/apache.conf
-ADD html /var/www/html
-ADD apache2 /etc/apache2
-#CMD source /etc/apache2/envvar
-CMD exec /usr/sbin/apache2 -DFOREGROUND
+CMD source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND
