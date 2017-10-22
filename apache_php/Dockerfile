@@ -1,6 +1,6 @@
 # Apache & PHP
 FROM       ubuntu:latest
-MAINTAINER ymir            "mazieres.pierre@gmail.com"
+MAINTAINER ymir          "mazieres.pierre@gmail.com"
 # update
 RUN (apt-get update -y && apt-get upgrade -y -q && apt-get dist-upgrade -y -q && apt-get -y -q autoclean && apt-get -y -q autoremove)
 # installation
@@ -13,4 +13,4 @@ EXPOSE 80
 # share volumes
 ADD html /var/www/html
 ADD apache2_conf /etc/apache2
-#CMD exec /usr/sbin/apache2 -DFOREGROUND
+CMD exec /bin/bash -c "service apache2 start ; tail -f /dev/null"
