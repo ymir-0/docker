@@ -1,7 +1,7 @@
 # Apache & PHP
-FROM		ubuntu:latest
-MAINTAINER	Adminrezo	"admin@adminrezo.fr"
-ENV		DEBIAN_FRONTEND	noninteractive
+FROM       ubuntu:latest
+MAINTAINER ymir            "mazieres.pierre@gmail.com"
+ENV        DEBIAN_FRONTEND noninteractive
 # update
 RUN (apt-get update -y && apt-get upgrade -y -q && apt-get dist-upgrade -y -q && apt-get -y -q autoclean && apt-get -y -q autoremove)
 # installation
@@ -13,8 +13,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 EXPOSE 80
 # Demarrage des services
 RUN mkdir -p /var/log/supervisor
-#ADD apache.conf /etc/supervisor/conf.d/apache.conf
 ADD html /var/www/html
 ADD apache2_conf /etc/apache2
-#CMD source /etc/apache2/envvar
-CMD exec /usr/sbin/apache2 -DFOREGROUND
+#CMD exec /usr/sbin/apache2 -DFOREGROUND
