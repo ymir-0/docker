@@ -1,10 +1,4 @@
-.Dockerfile.swp
-apache2
-.build_image.sh.swp
-apache2_conf
-apache2_log
+apache2_*
 backup
 html
-.build.sh.swp
-.run.sh.swp
-.configuration.sh.swp
+*.swp
