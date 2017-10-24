@@ -1,0 +1,3 @@
+DIRECTORY="bare"
+IMAGE_NAME=${DIRECTORY}"/apache_php"
+CONTAINER_NAME=${DIRECTORY}"_apache_php"

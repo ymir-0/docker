@@ -7,3 +7,4 @@ backup
 html
 .build.sh.swp
 .run.sh.swp
+.configuration.sh.swp

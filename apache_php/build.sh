@@ -1,2 +1,2 @@
-IMAGE_NAME="bare/apache_php"
+. configuration.sh
 docker build -t ${IMAGE_NAME} .
