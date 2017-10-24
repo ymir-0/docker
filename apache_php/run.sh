@@ -1,7 +1,6 @@
-IMAGE_NAME="perso/apache_php"
-CONTAINER_NAME="perso_apache_php"
+IMAGE_NAME="bare/apache_php"
+CONTAINER_NAME="bare_apache_php"
 HOST_SCRIPT_ABSOLUTE_PATH=`dirname $( readlink -f "$0" )` # absolute path is mandatory for volumes binding between host and container
-docker build -t ${IMAGE_NAME} .
 # sample files can be found in archive : sample.tar.gz
 # they contains folders :
 # - apache2_conf : default apache configuration

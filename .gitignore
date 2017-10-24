@@ -5,3 +5,5 @@ apache2_conf
 apache2_log
 backup
 html
+.build.sh.swp
+.run.sh.swp
