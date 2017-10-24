@@ -1,2 +1,2 @@
 . configuration.sh
-docker exec -it ${CONTAINER_NAME} /bin/bash
+docker exec -it ${CONTAINER} /bin/bash

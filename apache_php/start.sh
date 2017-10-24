@@ -1,2 +1,2 @@
 . configuration.sh
-docker start ${CONTAINER_NAME}
+docker start ${CONTAINER}

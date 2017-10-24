@@ -1,2 +1,2 @@
 . configuration.sh
-docker stop ${CONTAINER_NAME}
+docker stop ${CONTAINER}
