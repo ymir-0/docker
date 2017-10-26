@@ -1,11 +1,10 @@
-# Apache & PHP
 FROM ubuntu:latest
 LABEL maintener="ymir mazieres.pierre@gmail.com"
 # update
 RUN (apt-get update -y && apt-get upgrade -y -q && apt-get dist-upgrade -y -q && apt-get -y -q autoclean && apt-get -y -q autoremove)
 # installation
 RUN apt-get install -y -q apache2 libapache2-mod-php php supervisor
-# apache configuration
+# configuration
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
