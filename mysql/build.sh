@@ -18,10 +18,10 @@ mv Dockerfile.pattern Dockerfile
 # - apache2_conf : default apache configuration
 # - html : default index and test site
 # apache2_log : log file ; will be created if not existing
-#docker create \
-#    --name ${CONTAINER} \
-#    -p 3306:3306 \
-#    ${IMAGE}
+docker create \
+    --name ${CONTAINER} \
+    -p 3306:3306 \
+    ${IMAGE}
 #    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/html:/var/www/html \
 #    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/apache2_conf:/etc/apache2 \
 #    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/apache2_log:/var/log/apache2 \
