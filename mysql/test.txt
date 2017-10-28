@@ -1,3 +1,26 @@
-to test this container, please ply with URLs :
- - apache : htpp://<server>/test/html
- - php : http://<server>/test/php
+to test this container, please execute this request :
+mysql -u <USER> -p -D TEST -e "USE TEST; SELECT * FROM PERSONS;" --protocol=tcp
+
+You should see something like :
++----------+----------+-----------+----------------------------+-----------+
+| PERSONID | LASTNAME | FIRSTNAME | ADDRESS                    | CITY      |
++----------+----------+-----------+----------------------------+-----------+
+|        0 | Jean     | Dupont    | 10 rue des Peupliers       | Paris     |
+|        1 | Pierre   | Martin    | 5 avenue de la République  | Marseille |
+|        2 | Martine  | Dupuit    | 3bis cours Gambetta        | Lyon      |
++----------+----------+-----------+----------------------------+-----------+
+
+The original script construction is :
+CREATE DATABASE TEST;
+USE TEST;
+CREATE TABLE PERSONS (
+    PERSONID INT,
+    LASTNAME VARCHAR(255),
+    FIRSTNAME VARCHAR(255),
+    ADDRESS VARCHAR(255),
+    CITY VARCHAR(255)
+);
+INSERT INTO PERSONS VALUES
+(0, 'Jean', 'Dupont', '10 rue des Peupliers', 'Paris'),
+(1, 'Pierre', 'Martin', '5 avenue de la République', 'Marseille'),
+(2, 'Martine', 'Dupuit', '3bis cours Gambetta', 'Lyon');
