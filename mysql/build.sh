@@ -20,6 +20,7 @@ mv Dockerfile.pattern Dockerfile
 # apache2_log : log file ; will be created if not existing
 docker create \
     --name ${CONTAINER} \
+    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/configuration:/etc/mysql \
     -p 3306:3306 \
     ${IMAGE}
 #    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/html:/var/www/html \
