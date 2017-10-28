@@ -3,16 +3,15 @@ LABEL maintener="ymir mazieres.pierre@gmail.com"
 # update
 RUN (apt-get update -y && apt-get upgrade -y -q && apt-get dist-upgrade -y -q && apt-get -y -q autoclean && apt-get -y -q autoremove)
 # installation
-RUN apt-get install -y -q mysql-server
+RUN apt-get install -y debconf-utils \
+    && echo mysql-server-5.5 mysql-server/root_password password {ROOT_PASSWORD} | debconf-set-selections \
+    && echo mysql-server-5.5 mysql-server/root_password_again password {ROOT_PASSWORD} | debconf-set-selections \
+    && apt-get install -y mysql-server -o pkg::Options::="--force-confdef" -o pkg::Options::="--force-confold" --fix-missing
 # configuration
-#ENV APACHE_RUN_USER www-data
-#ENV APACHE_RUN_GROUP www-data
-#ENV APACHE_LOG_DIR /var/log/apache2
-# expose port
+RUN sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+RUN service mysql start \
+    && mysql -u root -p{ROOT_PASSWORD} --execute "GRANT ALL PRIVILEGES ON *.* TO '{USER_LOGIN}'@'%' IDENTIFIED BY '{USER_PASSWORD}' with GRANT OPTION; FLUSH PRIVILEGES;"
+# export port
 EXPOSE 3306
-# share volumes
-#ADD html /var/www/html
-#ADD apache2_conf /etc/apache2
-# start service
 # the 'tail' command avoid container to stop (so simulate a daemon)
 CMD exec /bin/bash -c "service mysql start ; tail -f /dev/null"
