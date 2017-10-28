@@ -25,5 +25,9 @@ docker create \
     -p 3306:3306 \
     ${IMAGE}
 #    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/log:/var/log/mysql \
-# set fine container directory rights (forget about not running error message)
+# set fine container directory rights
+docker start ${CONTAINER}
 docker exec -it ${CONTAINER} /bin/bash -c "chown -R mysql:adm /var/log/mysql"
+docker exec -it ${CONTAINER} /bin/bash -c "chown -R mysql:mysql /var/lib/mysql"
+docker stop ${CONTAINER}
+
