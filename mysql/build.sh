@@ -21,8 +21,9 @@ mv Dockerfile.pattern Dockerfile
 docker create \
     --name ${CONTAINER} \
     -v ${HOST_SCRIPT_ABSOLUTE_PATH}/configuration:/etc/mysql \
+    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/log:/var/log/mysql \
     -p 3306:3306 \
     ${IMAGE}
-#    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/html:/var/www/html \
-#    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/apache2_conf:/etc/apache2 \
-#    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/apache2_log:/var/log/apache2 \
+#    -v ${HOST_SCRIPT_ABSOLUTE_PATH}/log:/var/log/mysql \
+# set fine container directory rights (forget about not running error message)
+docker exec -it ${CONTAINER} /bin/bash -c "chown -R mysql:adm /var/log/mysql"

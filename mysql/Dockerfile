@@ -13,6 +13,7 @@ RUN sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/
     && mysql -u root -p{ROOT_PASSWORD} --execute "GRANT ALL PRIVILEGES ON *.* TO '{USER_LOGIN}'@'%' IDENTIFIED BY '{USER_PASSWORD}' with GRANT OPTION; FLUSH PRIVILEGES;"
 # share volumes
 ADD configuration /etc/mysql
+VOLUME /var/log/mysql
 # export port
 EXPOSE 3306
 # the 'tail' command avoid container to stop (so simulate a daemon)
