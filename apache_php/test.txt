@@ -1,3 +1,3 @@
-to test this container, please ply with URLs :
+to test this container, please play with URLs :
  - apache : htpp://<server>/test/html
  - php : http://<server>/test/php

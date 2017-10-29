@@ -1,7 +1,6 @@
-apache2_*
 backup
 html
 *.swp
-configuration/
+configuration
 log
 data
