@@ -31,4 +31,3 @@ docker create \
 docker start ${CONTAINER}
 docker exec -it ${CONTAINER} /bin/bash -c "chown -R mysql:adm /var/log/mysql && chown -R mysql:mysql /var/lib/mysql"
 docker stop ${CONTAINER}
-
