@@ -1,7 +1,7 @@
 to test this container, please play with URLs :
    curl -v <SERVER>:81
    curl -v <SERVER>:81/helloworldpython3/
-then try to install test aaplication :
+then try to install test application :
    pip3 install --upgrade pip # upgrade pip
    sudo pip3 uninstall helloworldpython3 # uninstall existing test app (do not care about "non-existing" error)
    sudo pip3 install --extra-index-url http://<SERVER>:81/ --trusted-host <SERVER> helloworldpython3==0.1 # install test app v0.1
