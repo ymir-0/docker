@@ -1,0 +1,10 @@
+to test this container, please play with URLs :
+ - apache : htpp://<server>/test/html
+   curl -v localhost
+   curl -v http://localhost/test/html/page1.html
+   curl -v http://localhost/test/html/page2.html
+ - php : http://<server>/test/php
+   curl -v http://localhost/test/php/info.php
+   curl -v "http://localhost/test/php/test.php?lang=fr"
+   curl -v "http://localhost/test/php/test.php?lang=en"
+   curl -v "http://localhost/test/php/test.php?lang=it"
