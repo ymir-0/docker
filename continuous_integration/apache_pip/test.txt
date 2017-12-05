@@ -4,9 +4,9 @@ to test this container, please play with URLs :
 then try to install test aaplication :
    pip3 install --upgrade pip # upgrade pip
    sudo pip3 uninstall helloworldpython3 # uninstall existing test app (do not care about "non-existing" error)
-   sudo pip3 install --extra-index-url http://<SERVER>:81/ helloworldpython3==0.1 # install test app v0.1
+   sudo pip3 install --extra-index-url http://<SERVER>:81/ --trusted-host <SERVER> helloworldpython3==0.1 # install test app v0.1
    pip3 show helloworldpython3 # inspect test application v0.1 : explicit version number display must confirm it
    echo "import helloworldpython3.HelloWorldPython3" | python3 # run test application v0.1 : explicit version number display must confirm it
-   sudo pip3 install -U --extra-index-url http://<SERVER>:81/ helloworldpython3 # update test application to last version
+   sudo pip3 install -U --extra-index-url http://<SERVER>:81/ --trusted-host <SERVER> helloworldpython3 # update test application to last version
    pip3 show helloworldpython3 # inspect test application v0.1 : explicit version number display must confirm it
    echo "import helloworldpython3.HelloWorldPython3" | python3 # run test application v0.1 : explicit version number display must confirm it
