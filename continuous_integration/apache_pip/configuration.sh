@@ -1,4 +1,4 @@
-PREFIX="continuous_integration"
+PREFIX="ci"
 NAME="apache_pip"
 # DOCKER_ID_USER is your docker ID and should be defined at linux session startup
 IMAGE=${DOCKER_ID_USER}"/"${PREFIX}"_"${NAME}
