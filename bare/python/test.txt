@@ -1,0 +1,5 @@
+connect to container console and Python :
+   python3 --version # expected : 3.x
+   pip3 --version # expected : version #
+   pip3 list # expected : HelloWorldPython3 (0.2.0) & hyPi (1.0.0)
+   echo "import helloworldpython3.HelloWorldPython3" | python3 # expected : "hello world" message
