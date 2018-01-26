@@ -3,4 +3,5 @@ HOST_SCRIPT_ABSOLUTE_PATH=`dirname $( readlink -f "$0" )` # absolute path is man
 docker create \
     --name ${CONTAINER} \
     -p 80:80 \
+    -p 8080:8080 \
     ${IMAGE}

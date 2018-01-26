@@ -1,11 +1,9 @@
 # INFO : this script create a docker containers with all PirateBox services
+# it is a fork of the one at : https://github.com/PirateBox-Dev/PirateBox-Docker.git
 # TODO :
 # - install droopy (file upload)
 # - configure forum
-# - change hard coded links to (ie "piratebox.lan:8080")
-# - remmove useless /piratebox directory
-# - interactive port settings
-# this script is a fork of the one at : https://github.com/PirateBox-Dev/PirateBox-Docker.git
+# - interactive port settings (dockerfile & piratebox directory)
 FROM ubuntu:latest
 LABEL maintener="ymir mazieres.pierre@gmail.com"
 
@@ -51,6 +49,7 @@ RUN chmod +x /start_piratebox.sh
 # cleanup
 RUN apt-get remove --purge -y git make ; \
     apt-get autoclean -y ; apt-get autoremove -y ; \
+    rm -Rf /piratebox ; \
     rm -rv PirateBoxScripts_Webserver piratebox-ws_1.2.0.tar.gz
 
 # lighttpd port
