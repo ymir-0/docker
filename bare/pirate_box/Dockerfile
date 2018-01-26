@@ -1,8 +1,14 @@
+# INFO : this script create a docker containers with all PirateBox services
+# TODO :
+# - install droopy (file upload)
+# - configure forum
+# - change hard coded links to (ie "piratebox.lan:8080")
+# - interactive port settingd
 # this script is a fork of the one at : https://github.com/PirateBox-Dev/PirateBox-Docker.git
 FROM ubuntu:latest
 LABEL maintener="ymir mazieres.pierre@gmail.com"
 
-
+# parameters
 ARG BRANCH=development
 ARG REPOSITORY=https://github.com/PirateBox-Dev/PirateBoxScripts_Webserver.git
 
@@ -10,15 +16,15 @@ ARG REPOSITORY=https://github.com/PirateBox-Dev/PirateBoxScripts_Webserver.git
 RUN apt-get update -y ; apt-get upgrade -y -q ; apt-get dist-upgrade -y -q ; apt-get -y -q autoclean ; apt-get -y -q autoremove
 
 # install packages
-RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget # openrc
+RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget
 
-# Get development version
+# get development version
 RUN git clone $REPOSITORY && \
     cd PirateBoxScripts_Webserver && \
     git checkout origin/$BRANCH && \
     make package
 
-# Deploy & Adjust config
+# deploy & Adjust config
 # Also remove redirect with hostname included. That won't work.
 RUN mkdir -p /opt && \
     cp PirateBoxScripts_Webserver/piratebox-ws*.tar.gz . &&\
@@ -33,28 +39,27 @@ RUN mkdir -p /opt && \
           /opt/piratebox/conf/firewall.conf && \
     sed -i -e 's|http://piratebox.lan||' /opt/piratebox/www/index.html
 
-# Do PirateBox init
+# do PirateBox init
 RUN /opt/piratebox/bin/install_piratebox.sh part2 ; \
     /opt/piratebox/bin/install_piratebox.sh imageboard
 
 COPY start_piratebox.sh /
 RUN chmod +x /start_piratebox.sh
 
-## Cleanup
+# cleanup
 RUN apt-get remove --purge -y git make ; \
     apt-get autoclean -y ; apt-get autoremove -y ; \
     rm -rv PirateBoxScripts_Webserver piratebox-ws_1.2.0.tar.gz
 
-# Lighttpd Port
+# lighttpd port
 EXPOSE 80
-# Droopy Port  (soon absolete)
+# droopy port
 EXPOSE 8080
 
-#Share space
+# share space
 VOLUME ["/opt/piratebox/share"]
 
 
 # start service
-# the 'tail' command avoid container to stop (so simulate a daemon)
-#CMD exec /bin/bash -c "tail -f /dev/null"
+# the 'while true' command avoid container to stop (so simulate a daemon)
 CMD [ "/start_piratebox.sh" ]
