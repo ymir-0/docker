@@ -3,7 +3,8 @@
 # - install droopy (file upload)
 # - configure forum
 # - change hard coded links to (ie "piratebox.lan:8080")
-# - interactive port settingd
+# - remmove useless /piratebox directory
+# - interactive port settings
 # this script is a fork of the one at : https://github.com/PirateBox-Dev/PirateBox-Docker.git
 FROM ubuntu:latest
 LABEL maintener="ymir mazieres.pierre@gmail.com"
@@ -22,6 +23,7 @@ RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget
 RUN git clone $REPOSITORY && \
     cd PirateBoxScripts_Webserver && \
     git checkout origin/$BRANCH && \
+    find . -type f -exec sed -i -e 's/piratebox.lan/localhost/g' {} \; && \
     make package
 
 # deploy & Adjust config
