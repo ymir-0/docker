@@ -15,7 +15,7 @@ ARG REPOSITORY=https://github.com/PirateBox-Dev/PirateBoxScripts_Webserver.git
 RUN apt-get update -y ; apt-get upgrade -y -q ; apt-get dist-upgrade -y -q ; apt-get -y -q autoclean ; apt-get -y -q autoremove
 
 # install packages
-# even if droopy is included in repo PirateBoxScripts_Webserver.git (bin/droopy), we install it to avoid python issues
+# even if droopy is included in repo PirateBoxScripts_Webserver.git (bin/droopy), we install it to avoid upload issues
 RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget droopy
 
 # get development version
@@ -45,12 +45,8 @@ RUN /opt/piratebox/bin/install_piratebox.sh part2 ; \
     /opt/piratebox/bin/install_piratebox.sh imageboard
 
 # copy script
-COPY script/start_piratebox.sh /
+COPY start_piratebox.sh /
 RUN chmod +x /start_piratebox.sh
-#COPY script/piratebox_alt /opt/piratebox/init.d/
-#RUN chmod +x /opt/piratebox/init.d/piratebox_alt
-#COPY script/json_func.sh /opt/piratebox/lib/
-#RUN chmod +x /opt/piratebox/lib/json_func.sh
 
 # cleanup
 RUN apt-get remove --purge -y git make ; \
