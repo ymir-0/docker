@@ -15,7 +15,8 @@ ARG REPOSITORY=https://github.com/PirateBox-Dev/PirateBoxScripts_Webserver.git
 RUN apt-get update -y ; apt-get upgrade -y -q ; apt-get dist-upgrade -y -q ; apt-get -y -q autoclean ; apt-get -y -q autoremove
 
 # install packages
-RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget
+# even if droopy is included in repo PirateBoxScripts_Webserver.git (bin/droopy), we install it to avoid python issues
+RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget droopy
 
 # get development version
 RUN git clone $REPOSITORY && \
@@ -43,14 +44,19 @@ RUN mkdir -p /opt && \
 RUN /opt/piratebox/bin/install_piratebox.sh part2 ; \
     /opt/piratebox/bin/install_piratebox.sh imageboard
 
-COPY start_piratebox.sh /
+# copy script
+COPY script/start_piratebox.sh /
 RUN chmod +x /start_piratebox.sh
+#COPY script/piratebox_alt /opt/piratebox/init.d/
+#RUN chmod +x /opt/piratebox/init.d/piratebox_alt
+#COPY script/json_func.sh /opt/piratebox/lib/
+#RUN chmod +x /opt/piratebox/lib/json_func.sh
 
 # cleanup
 RUN apt-get remove --purge -y git make ; \
     apt-get autoclean -y ; apt-get autoremove -y ; \
     rm -Rf /piratebox ; \
-    rm -rv PirateBoxScripts_Webserver piratebox-ws_1.2.0.tar.gz
+    rm -rv PirateBoxScripts_Webserver piratebox-ws_*.tar.gz
 
 # lighttpd port
 EXPOSE 80
@@ -59,7 +65,6 @@ EXPOSE 8080
 
 # share space
 VOLUME ["/opt/piratebox/share"]
-
 
 # start service
 # the 'while true' command avoid container to stop (so simulate a daemon)
