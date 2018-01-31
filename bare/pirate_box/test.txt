@@ -1,0 +1,14 @@
+to test this container, please do following steps :
+ - chat :
+   - go to URL : http://<server>/content/
+   - send some messages (with different colors and names)
+ - file exchange :
+   - go to URL : http://<server>/content/
+   - upload files
+   - go to URL : http://localhost/Shared/
+   - download files
+ - forum
+   - go to URL : http://localhost/board/admin.pl
+   - sublit admin password (if required)
+   - click on "Rebuild caches"
+   - create/reply topics (with different names and files/pictures)
