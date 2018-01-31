@@ -15,8 +15,9 @@ ARG REPOSITORY=https://github.com/PirateBox-Dev/PirateBoxScripts_Webserver.git
 RUN apt-get update -y ; apt-get upgrade -y -q ; apt-get dist-upgrade -y -q ; apt-get -y -q autoclean ; apt-get -y -q autoremove
 
 # install packages
-# even if droopy is included in repo PirateBoxScripts_Webserver.git (bin/droopy), we install it to avoid upload issues
-RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget droopy
+# INFO : even if droopy is included in repo PirateBoxScripts_Webserver.git (bin/droopy), we install it to avoid upload issues
+# INFO : kareha forum seems do be not completely included, so we need to install zip and CGI package in order to reinstall it
+RUN apt-get install -y python2.7 lighttpd perl php php-cgi git make wget droopy libcgi-pm-perl unzip
 
 # get development version
 RUN git clone $REPOSITORY && \
@@ -41,18 +42,27 @@ RUN mkdir -p /opt && \
     sed -i -e 's|http://piratebox.lan||' /opt/piratebox/www/index.html
 
 # do PirateBox init
-RUN /opt/piratebox/bin/install_piratebox.sh part2 ; \
-    /opt/piratebox/bin/install_piratebox.sh imageboard
-
-# copy script
-COPY start_piratebox.sh /
+RUN /opt/piratebox/bin/install_piratebox.sh part2
+COPY scripts/start_piratebox.sh /
 RUN chmod +x /start_piratebox.sh
+
+# initialize forum
+RUN cd /opt/piratebox/share ; \
+    rm -Rf board ; \
+    wget http://wakaba.c3.cx/releases/Kareha/kareha_3.1.4.zip ; \
+    unzip kareha_3.1.4.zip ; \
+    mv kareha board ; \
+    /opt/piratebox/bin/install_piratebox.sh imageboard
+COPY scripts/config.pl /opt/piratebox/share/board
+RUN cd /opt/piratebox/share/board ; \
+    /opt/piratebox/share/board/kareha.pl
 
 # cleanup
 RUN apt-get remove --purge -y git make ; \
     apt-get autoclean -y ; apt-get autoremove -y ; \
     rm -Rf /piratebox ; \
-    rm -rv PirateBoxScripts_Webserver piratebox-ws_*.tar.gz
+    rm -Rf PirateBoxScripts_Webserver piratebox-ws_*.tar.gz ; \
+    rm -Rf /opt/piratebox/share/kareha_3.1.4.zip
 
 # lighttpd port
 EXPOSE 80
