@@ -1,9 +1,6 @@
 # INFO : this script create a docker containers with all PirateBox services
 # it is a fork of the one at : https://github.com/PirateBox-Dev/PirateBox-Docker.git
-# TODO :
-# - install droopy (file upload)
-# - configure forum
-# - interactive port settings (dockerfile & piratebox directory)
+# TODO : interactive port settings (dockerfile & piratebox directory)
 FROM ubuntu:latest
 LABEL maintener="ymir mazieres.pierre@gmail.com"
 
