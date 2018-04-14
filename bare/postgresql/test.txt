@@ -1,0 +1,26 @@
+to test this container, please execute this request :
+psql -h <HOST> -U <USER> -W -d <DB_NAME> -c "SELECT * FROM PERSONS;"
+Normally, DB_NAME=USER
+
+You should see something like :
++----------+----------+-----------+----------------------------+-----------+
+| PERSONID | LASTNAME | FIRSTNAME | ADDRESS                    | CITY      |
++----------+----------+-----------+----------------------------+-----------+
+|        0 | Jean     | Dupont    | 10 rue des Peupliers       | Paris     |
+|        1 | Pierre   | Martin    | 5 avenue de la République  | Marseille |
+|        2 | Martine  | Dupuit    | 3bis cours Gambetta        | Lyon      |
++----------+----------+-----------+----------------------------+-----------+
+
+The original script construction is :
+CREATE DATABASE TEST;
+CREATE TABLE PERSONS (
+    PERSONID INT,
+    LASTNAME VARCHAR(255),
+    FIRSTNAME VARCHAR(255),
+    ADDRESS VARCHAR(255),
+    CITY VARCHAR(255)
+);
+INSERT INTO PERSONS VALUES
+(0, 'Jean', 'Dupont', '10 rue des Peupliers', 'Paris'),
+(1, 'Pierre', 'Martin', '5 avenue de la République', 'Marseille'),
+(2, 'Martine', 'Dupuit', '3bis cours Gambetta', 'Lyon');

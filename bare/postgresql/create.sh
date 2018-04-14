@@ -8,6 +8,5 @@ HOST_SCRIPT_ABSOLUTE_PATH=`dirname $( readlink -f "$0" )` # absolute path is man
 docker create \
     --name ${CONTAINER} \
     -p 5432:5432 \
-    -p 5433:5433 \
     ${IMAGE}
 # set fine container directory rights
