@@ -1,6 +1,6 @@
 to test this container, please execute this request :
 psql -h <HOST> -U <USER> -W -d <DB_NAME> -c "SELECT * FROM PERSONS;"
-Normally, DB_NAME=USER
+Normally, DB_NAME=test
 
 You should see something like :
 +----------+----------+-----------+----------------------------+-----------+
@@ -12,7 +12,10 @@ You should see something like :
 +----------+----------+-----------+----------------------------+-----------+
 
 The original script construction is :
-CREATE DATABASE TEST;
+psql -h <HOST> -U <USER> -W -d <USER>
+CREATE DATABASE <DB_NAME>;
+\q
+psql -h <HOST> -U <USER> -W -d <DB_NAME>
 CREATE TABLE PERSONS (
     PERSONID INT,
     LASTNAME VARCHAR(255),
@@ -24,3 +27,4 @@ INSERT INTO PERSONS VALUES
 (0, 'Jean', 'Dupont', '10 rue des Peupliers', 'Paris'),
 (1, 'Pierre', 'Martin', '5 avenue de la République', 'Marseille'),
 (2, 'Martine', 'Dupuit', '3bis cours Gambetta', 'Lyon');
+\q
