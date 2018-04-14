@@ -14,5 +14,5 @@ docker create \
     ${IMAGE}
 # set fine container directory rights
 docker start ${CONTAINER}
-docker exec -it ${CONTAINER} /bin/bash -c "chown -R root:postgres /etc/postgresql ; chown -R root:postgres /var/log/postgresql ; chown -R postgres:postgres /var/lib/postgresql"
+docker exec -it ${CONTAINER} /bin/bash -c "chown -R postgres:postgres /etc/postgresql ; chown -R postgres:adm /var/log/postgresql ; chown -R postgres:postgres /var/lib/postgresql"
 docker stop ${CONTAINER}
