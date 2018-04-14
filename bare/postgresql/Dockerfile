@@ -11,6 +11,8 @@ RUN cp /pg_hba.conf /etc/postgresql/**/main/pg_hba.conf; \
    su - postgres -c "psql -f /users.sql"; \
    rm -f /pg_hba.conf /users.sql
 # share volumes
+ADD configuration /etc/postgresql
+ADD data /var/lib/postgresql
 # export port
 EXPOSE 5432
 # the 'tail' command avoid container to stop (so simulate a daemon)

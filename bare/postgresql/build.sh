@@ -9,6 +9,7 @@ sed -i s/"{POSTGRES_PASSWORD}"/${POSTGRES_PASSWORD}/g users.sql
 sed -i s/"{USER_LOGIN}"/${USER_LOGIN}/g users.sql
 sed -i s/"{USER_PASSWORD}"/${USER_PASSWORD}/g users.sql
 # allow to edit shared volumes
+#sudo chown -R ${USER} {log,data}
 # create image
 docker build -t ${IMAGE} .
 # restore users script
