@@ -13,7 +13,7 @@ You should see something like :
 
 The original script construction is :
 psql -h <HOST> -U <USER> -W -d <USER>
-CREATE DATABASE <DB_NAME>;
+CREATE DATABASE <DB_NAME> WITH OWNER=<USER> ENCODING='UTF-8' TEMPLATE=template0;
 \q
 psql -h <HOST> -U <USER> -W -d <DB_NAME>
 CREATE TABLE PERSONS (
