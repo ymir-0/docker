@@ -4,7 +4,7 @@ LABEL maintener="ymir mazieres.pierre@gmail.com"
 RUN apt-get update -y ; apt-get upgrade -y -q ; apt-get dist-upgrade -y -q ; apt-get -y -q autoclean ; apt-get -y -q autoremove
 # install
 COPY pg_hba.conf /
-COPY pg_hba.conf /
+COPY postgresql.conf /
 COPY users.sql /
 RUN apt-get install -y postgresql
 RUN cp /pg_hba.conf /etc/postgresql/**/main/postgresql.conf; \
